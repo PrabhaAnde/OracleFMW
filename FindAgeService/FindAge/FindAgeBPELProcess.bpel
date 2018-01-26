@@ -1,0 +1,73 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Thu Jan 25 16:20:08 EST 2018
+  Author:  Prabhas Ande
+  Type: BPEL 2.0 Process
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="FindAgeBPELProcess"
+               targetNamespace="http://ande.prabhas.org/v1/FindAgeService/FindAge/FindAgeBPELProcess"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://ande.prabhas.org/v1/FindAgeService/FindAge/FindAgeBPELProcess"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+
+    <import namespace="http://ande.prabhas.org/v1/FindAgeService/FindAge/FindAgeBPELProcess" location="FindAgeBPELProcess.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        PARTNERLINKS                                                      
+        List of services participating in this BPEL process               
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    --> 
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="findagebpelprocess_client" partnerLinkType="client:FindAgeBPELProcess" myRole="FindAgeBPELProcessProvider"/>
+  </partnerLinks>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="client:FindAgeBPELProcessRequestMessage"/>
+
+    <!-- Reference to the message that will be returned to the requester-->
+    <variable name="outputVariable" messageType="client:FindAgeBPELProcessResponseMessage"/>
+  </variables>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main">
+
+    <!-- Receive input from requestor. (Note: This maps to operation defined in FindAgeBPELProcess.wsdl) -->
+    <receive name="receiveInput" partnerLink="findagebpelprocess_client" portType="client:FindAgeBPELProcess" operation="process" variable="inputVariable" createInstance="yes"/>
+    <assign name="TransformIO">
+      <bpelx:annotation>
+        <bpelx:pattern patternName="bpelx:transformation"/>
+      </bpelx:annotation>
+      <copy>
+        <from>ora:doXSLTransformForDoc("xsl/XFormAge.xsl", $inputVariable.payload)</from>
+        <to variable="outputVariable" part="payload"/>
+      </copy>
+    </assign>
+    <!-- Generate reply to synchronous request -->
+    <reply name="replyOutput" partnerLink="findagebpelprocess_client" portType="client:FindAgeBPELProcess" operation="process" variable="outputVariable"/>
+  </sequence>
+</process>
