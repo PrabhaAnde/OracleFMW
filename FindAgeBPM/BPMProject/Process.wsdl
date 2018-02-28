@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--########################################################################################-->
+<!--####                                                                                ####-->
+<!--####          THIS IS AN AUTO GENERATED FILE. PLEASE DO NOT MANUALLY MODIFY         ####-->
+<!--#### CHANGES TO THIS FILE MAY PRODUCE UNEXPECTED BEHAVIOR AND WOULD BE OVERWRITTEN  ####-->
+<!--####                                                                                ####-->
+<!--########################################################################################-->
+<wsdl:definitions targetNamespace="http://xmlns.oracle.com/bpmn/bpmnProcess/Process" xmlns:tns="http://xmlns.oracle.com/bpmn/bpmnProcess/Process"  xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"  xmlns:xsd="http://www.w3.org/2001/XMLSchema"  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"  xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"  xmlns:tns6="http://ande.prabhas.org/xsd/v1" >
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://xmlns.oracle.com/bpmn/bpmnProcess/Process">
+            <xsd:import namespace="http://ande.prabhas.org/xsd/v1" schemaLocation="xsd/ProcessIO.xsd"/>
+            <xsd:element name="start">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="tns6:Request"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="startResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="tns6:Response"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="start">
+        <wsdl:part name="parameters" element="tns:start"/>
+    </wsdl:message>
+    <wsdl:message name="startResponse">
+        <wsdl:part name="parameters" element="tns:startResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="ProcessPortType">
+        <wsdl:operation name="start">
+            <wsdl:input message="tns:start"/>
+            <wsdl:output message="tns:startResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <plnk:partnerLinkType name="ProcessPortTypePartnerLinkType">
+        <plnk:role name="ProcessPortTypeProvider">
+            <plnk:portType name="tns:ProcessPortType"/>
+        </plnk:role>
+    </plnk:partnerLinkType>
+</wsdl:definitions>

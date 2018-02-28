@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://xmlns.oracle.com/rules/test" targetNamespace="http://xmlns.oracle.com/rules/test" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:df="http://xmlns.oracle.com/OracleRules1/OracleRules1_DecisionFunction1">
+
+    <annotation>
+      <documentation>
+          Decision Function Test Suite Schema
+      </documentation>
+    </annotation>
+   <import namespace="http://xmlns.oracle.com/OracleRules1/OracleRules1_DecisionFunction1" schemaLocation="../../xsd/OracleRules1_DecisionFunction1MessageTypes.xsd"/>
+
+    <element name="testSuite">
+        <complexType>
+            <sequence>
+                <element name="decisionFunction" type="string" minOccurs="1" maxOccurs="1"/>
+                <element name="testCase" type="tns:testCaseType" minOccurs="1" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="testCaseType">
+        <sequence>
+            <element name="testInput" type="df:parameterListType" minOccurs="0" maxOccurs="1"/>
+            <element name="expectedOutput" type="df:resultListType" minOccurs="0" maxOccurs="1"/>
+        </sequence>
+        <attribute name="name" type="string" use="required"/>
+    </complexType>
+</schema>
