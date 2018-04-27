@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--########################################################################################-->
+<!--####                                                                                ####-->
+<!--####          THIS IS AN AUTO GENERATED FILE. PLEASE DO NOT MANUALLY MODIFY         ####-->
+<!--#### CHANGES TO THIS FILE MAY PRODUCE UNEXPECTED BEHAVIOR AND WOULD BE OVERWRITTEN  ####-->
+<!--####                                                                                ####-->
+<!--########################################################################################-->
+<wsdl:definitions targetNamespace="http://xmlns.oracle.com/bpmn/bpmnProcess/BPMCommOne" xmlns:tns2="http://org.prabhas.ande/AsyncService/AsyncSOAProj/AsyncBPELProcess"  xmlns:xsd="http://www.w3.org/2001/XMLSchema"  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"  xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"  xmlns:tns="http://xmlns.oracle.com/bpmn/bpmnProcess/BPMCommOne"  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"  xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" >
+    <vprop:property name="property1" type="xsd:string"/>
+    <vprop:propertyAlias propertyName="tns:property1" part="payload" messageType="tns2:AsyncBPELProcessRequestMessage">
+        <vprop:query xmlns:ns="http://org.prabhas.ande/Async/V1">
+            /ns:RequestElement/ns:ID
+        </vprop:query>
+    </vprop:propertyAlias>
+    <vprop:propertyAlias propertyName="tns:property1" part="payload" messageType="tns2:AsyncBPELProcessResponseMessage">
+        <vprop:query xmlns:ns="http://org.prabhas.ande/Async/V1">
+            /ns:ResponseElement/ns:ID
+        </vprop:query>
+    </vprop:propertyAlias>
+</wsdl:definitions>

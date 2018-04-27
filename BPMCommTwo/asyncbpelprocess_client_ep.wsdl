@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+     name="AsyncBPELProcess"
+     targetNamespace="http://org.prabhas.ande/AsyncService/AsyncSOAProj/AsyncBPELProcess"
+     xmlns:ns1="http://org.prabhas.ande/Async/V1"
+     xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+     xmlns:client="http://org.prabhas.ande/AsyncService/AsyncSOAProj/AsyncBPELProcess"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    >
+    <wsdl:documentation>
+        <abstractWSDL>AsyncBPELProcess.wsdl</abstractWSDL>
+    </wsdl:documentation>
+    <plnk:partnerLinkType name="AsyncBPELProcess">
+        <plnk:role name="AsyncBPELProcessRequester" portType="client:AsyncBPELProcessCallback"/>
+        <plnk:role name="AsyncBPELProcessProvider" portType="client:AsyncBPELProcess"/>
+    </plnk:partnerLinkType>
+    <wsp:Policy xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+         wsu:Id="wsaddr_policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+        <wsaw:UsingAddressing xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"/>
+    </wsp:Policy>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://org.prabhas.ande/Async/V1" schemaLocation="AsyncIO.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="AsyncBPELProcessRequestMessage">
+        <wsdl:part name="payload" element="ns1:RequestElement"/>
+    </wsdl:message>
+    <wsdl:message name="AsyncBPELProcessResponseMessage">
+        <wsdl:part name="payload" element="ns1:ResponseElement"/>
+    </wsdl:message>
+    <wsdl:portType name="AsyncBPELProcess">
+        <wsdl:operation name="process">
+            <wsdl:input message="client:AsyncBPELProcessRequestMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:portType name="AsyncBPELProcessCallback">
+        <wsdl:operation name="processResponse">
+            <wsdl:input message="client:AsyncBPELProcessResponseMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="AsyncBPELProcessBinding" type="client:AsyncBPELProcess">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsp:PolicyReference xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" URI="#wsaddr_policy"
+             wsdl:required="false"/>
+        <wsdl:operation name="process">
+            <soap:operation style="document" soapAction="process"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="AsyncBPELProcessCallbackBinding" type="client:AsyncBPELProcessCallback">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="processResponse">
+            <soap:operation style="document" soapAction="processResponse"/>
+            <wsdl:input>
+                <soap:body use="literal" namespace="http://org.prabhas.ande/AsyncService/AsyncSOAProj/AsyncBPELProcess"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="asyncbpelprocess_client_ep">
+        <wsdl:port name="AsyncBPELProcess_pt" binding="client:AsyncBPELProcessBinding">
+            <soap:address location="http://prabhaspro:8001/soa-infra/services/default/AsyncSOAProj/asyncbpelprocess_client_ep"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

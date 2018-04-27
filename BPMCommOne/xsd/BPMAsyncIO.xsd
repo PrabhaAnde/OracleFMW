@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://org.prabhas.ande/BPMAsync/V1"
+            targetNamespace="http://org.prabhas.ande/BPMAsync/V1"
+            elementFormDefault="qualified">
+  <xsd:element name="BPMInputElement" type="Request"/>
+  <xsd:element name="BPMOutputElement" type="Response"/>
+  
+  <xsd:complexType name="Request">
+  <xsd:sequence>
+    <xsd:element name="In" type="xsd:string"/>
+    <xsd:element name="ID" type="xsd:string"/>
+  </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:complexType name="Response">
+  <xsd:sequence>
+    <xsd:element name="Out" type="xsd:string"/>
+    <xsd:element name="ID" type="xsd:string"/>
+  </xsd:sequence>
+  </xsd:complexType>
+    
+</xsd:schema>

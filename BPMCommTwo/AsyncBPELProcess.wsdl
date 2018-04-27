@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+     name="AsyncBPELProcess"
+     targetNamespace="http://org.prabhas.ande/AsyncService/AsyncSOAProj/AsyncBPELProcess"
+     xmlns:ns1="http://org.prabhas.ande/Async/V1"
+     xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+     xmlns:client="http://org.prabhas.ande/AsyncService/AsyncSOAProj/AsyncBPELProcess"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+    <plnk:partnerLinkType name="AsyncBPELProcess">
+        <plnk:role name="AsyncBPELProcessProvider" portType="client:AsyncBPELProcess"/>
+        <plnk:role name="AsyncBPELProcessRequester" portType="client:AsyncBPELProcessCallback"/>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://org.prabhas.ande/Async/V1" schemaLocation="xsd/AsyncIO_1.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="AsyncBPELProcessRequestMessage">
+        <wsdl:part name="payload" element="ns1:RequestElement"/>
+    </wsdl:message>
+    <wsdl:message name="AsyncBPELProcessResponseMessage">
+        <wsdl:part name="payload" element="ns1:ResponseElement"/>
+    </wsdl:message>
+    <wsdl:portType name="AsyncBPELProcess">
+        <wsdl:operation name="process">
+            <wsdl:input message="client:AsyncBPELProcessRequestMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:portType name="AsyncBPELProcessCallback">
+        <wsdl:operation name="processResponse">
+            <wsdl:input message="client:AsyncBPELProcessResponseMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

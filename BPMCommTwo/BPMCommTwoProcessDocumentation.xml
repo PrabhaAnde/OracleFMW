@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?oracleBPM version="11.1.1.7.0.2.22" fileRevision="20120217"?>
+<processDocumentation xmlns="http://xmlns.oracle.com/bpm/taskMetadataService/processDocumentation">
+    <component name="BPMCommTwoProcess">
+        <topicDocumentations>
+            <topicDocumentation name="BPMCommTwoProcess">
+                <descriptions>
+                    <description locale="en">BPMCommTwoProcess</description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="EVT22318267889668">
+                <labels>
+                    <label locale="en">Start</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="EVT22318267889798">
+                <labels>
+                    <label locale="en">End</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="EVT22318288489166">
+                <labels>
+                    <label locale="en">ThrowEvent</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="EVT22318290899559">
+                <labels>
+                    <label locale="en">CatchEvent</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="sf10"/>
+            <topicDocumentation name="sf12"/>
+            <topicDocumentation name="sf13"/>
+        </topicDocumentations>
+    </component>
+</processDocumentation>
