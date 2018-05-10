@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="windows-1252" ?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-            xmlns:tns="http://ande.prabhas.org/xsd/v1"
-            targetNamespace="http://ande.prabhas.org/xsd/v1"
+            xmlns:tns="http://ande.prabhas.org/xsd/v761"
+            targetNamespace="http://ande.prabhas.org/xsd/v671"
             elementFormDefault="qualified">
   <xsd:element name="Request" type="tns:RequestType"/>
   <xsd:element name="Response" type="tns:ResponseType"/>
