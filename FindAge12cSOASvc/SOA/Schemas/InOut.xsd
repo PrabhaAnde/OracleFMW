@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://ande.prabhas.org/v1"
+            targetNamespace="http://ande.prabhas.org/v1" elementFormDefault="qualified">
+  
+  
+  <xsd:element name="Request" type="ReqElem"/>
+  <xsd:complexType name="ReqElem">
+   <xsd:sequence>
+   <xsd:element name="PID" type="xsd:string"/>
+   <xsd:element name="DOB" type="xsd:string"/>
+   </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:element name="Response" type="ResElem"/>
+  <xsd:complexType name="ResElem">
+   <xsd:sequence>
+   <xsd:element name="PID" type="xsd:string"/>
+   <xsd:element name="Age" type="xsd:string"/>
+   </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
